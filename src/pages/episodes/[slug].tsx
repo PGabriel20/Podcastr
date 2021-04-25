@@ -2,6 +2,7 @@ import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+import { useRouter } from 'next/router'
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -25,6 +26,13 @@ type EpisodeProps = {
 }
 
 export default function Episode({episode} :EpisodeProps){
+  const router = useRouter();
+
+  //Se router estiver em carregamento
+  if(router.isFallback){
+    return <p>Carregando...</p>
+  }
+
   return(
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>

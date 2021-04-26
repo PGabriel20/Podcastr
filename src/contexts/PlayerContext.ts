@@ -18,6 +18,7 @@ type PlayerContextData = {
   togglePlay: () => void;
   //Guarda informação se episódio está tocando
   isPlaying: boolean;
+  setPlayingState: (state:boolean) => void;
 };
 
 

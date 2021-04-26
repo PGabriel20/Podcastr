@@ -26,9 +26,13 @@ function MyApp({ Component, pageProps }) {
     setIsPlaying(!isPlaying);
   }
 
+  function setPlayingState(state: boolean){
+    setIsPlaying(state);
+  }
+
   return(
     //Componentes dentro do provider terão acesso a informação do contexto
-    <PlayerContext.Provider value={{episodeList, currentEpisodeIndex, play, isPlaying, togglePlay}}>
+    <PlayerContext.Provider value={{episodeList, currentEpisodeIndex, play, isPlaying, togglePlay, setPlayingState}}>
       <div className={styles.wrapper}>
         <main>
           <Header />

@@ -3,17 +3,36 @@ import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import { PlayerContext } from '../../contexts/PlayerContext';
 import styles from './styles.module.scss';
 
 export function Player() {
+  //useRef acessa elementos HTML, como em JS nativo
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const {
     episodeList,
     currentEpisodeIndex,
     isPlaying,
     togglePlay 
   } = useContext(PlayerContext)
+
+  useEffect(()=>{
+    //Cada ref possi apenas uma propriedade, current, valor da ref
+    //Se nao tiver nenhuma ref não faz nada
+    if (!audioRef.current){
+      return;
+    }
+
+    //Se
+    if(isPlaying){
+      audioRef.current.play()
+    }
+    else{
+      audioRef.current.pause()
+    }
+  }, [isPlaying])
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -54,7 +73,7 @@ export function Player() {
         </div>
         
         {episode && (
-          <audio src={episode.url} autoPlay/>
+          <audio ref={audioRef} src={episode.url} autoPlay/>
         )}
 
         <div className={styles.buttons}>

@@ -10,7 +10,7 @@
   justify-content: space-between;
 
   width: 26.5rem;
-  height: 100vh;
+  max-height: 100%;
 
   header{
     display: flex;
@@ -31,6 +31,29 @@
     }
   }
 }
+
+.currentEpisode{
+  text-align: center;
+
+  img{
+    border-radius: 1.5rem;
+  }
+
+  strong{
+    display: block;
+    margin-top: 2rem;
+    font: 600 1.25rem Lexend, sans-serif;
+    line-height: 1.75rem;
+  }
+
+  span{
+    display: block;
+    margin-top: 1rem;
+    opacity: 0.6;
+    line-height: 1.5rem;
+  }
+}
+
 
 .emptyPlayer{
   width: 100%;

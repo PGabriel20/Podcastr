@@ -8,7 +8,12 @@ import { PlayerContext } from '../../contexts/PlayerContext';
 import styles from './styles.module.scss';
 
 export function Player() {
-  const { episodeList, currentEpisodeIndex } = useContext(PlayerContext)
+  const {
+    episodeList,
+    currentEpisodeIndex,
+    isPlaying,
+    togglePlay 
+  } = useContext(PlayerContext)
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -47,6 +52,10 @@ export function Player() {
           </div>
           <span>00:00</span>
         </div>
+        
+        {episode && (
+          <audio src={episode.url} autoPlay/>
+        )}
 
         <div className={styles.buttons}>
           <button type="button" disabled={!episode}>
@@ -55,8 +64,10 @@ export function Player() {
           <button type="button" disabled={!episode}>
             <img src="/play-previous.svg" alt="Tocar anterior"/>
           </button>
-          <button type="button" className={styles.playButton} disabled={!episode}>
-            <img src="/play.svg" alt="Tocar"/>
+          <button type="button" className={styles.playButton} onClick={togglePlay} disabled={!episode}>
+            {isPlaying 
+            ? <img src="/pause.svg" alt="Pausar"/> 
+            : <img src="/play.svg" alt="Tocar"/>}
           </button>
           <button type="button" disabled={!episode}>
             <img src="/play-next.svg" alt="Tocar próxima"/>

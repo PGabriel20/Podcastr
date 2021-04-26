@@ -14,6 +14,10 @@ type PlayerContextData = {
   currentEpisodeIndex: number;
   //Indicando que recebe uma função (PLAY)
   play: (episode: Episode) => void;
+  //Função que pausa/despausa
+  togglePlay: () => void;
+  //Guarda informação se episódio está tocando
+  isPlaying: boolean;
 };
 
 

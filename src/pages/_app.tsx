@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   //Criando estado para alterar valores do context
   const [episodeList, setEpisodeList] = useState([]);
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
 
   //Função passada para o context
@@ -18,11 +19,16 @@ function MyApp({ Component, pageProps }) {
   function play(episode){
     setEpisodeList([episode]);
     setCurrentEpisodeIndex(0);
+    setIsPlaying(true);
+  }
+
+  function togglePlay(){
+    setIsPlaying(!isPlaying);
   }
 
   return(
     //Componentes dentro do provider terão acesso a informação do contexto
-    <PlayerContext.Provider value={{episodeList, currentEpisodeIndex, play}}>
+    <PlayerContext.Provider value={{episodeList, currentEpisodeIndex, play, isPlaying, togglePlay}}>
       <div className={styles.wrapper}>
         <main>
           <Header />
